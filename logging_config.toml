@@ -1,0 +1,40 @@
+version = 1
+disable_existing_loggers = false
+
+[formatters.detailed]
+format = "%(asctime)s | %(levelname)-8s | [%(name)s:%(funcName)s:%(lineno)d] - %(message)s"
+datefmt = "%Y-%m-%dT%H:%M:%S%z"
+
+[formatters.json]
+"()" = "pythonjsonlogger.jsonlogger.JsonFormatter"
+format = "%(asctime)s %(levelname)s %(name)s %(funcName)s %(lineno)d %(message)s"
+
+[formatters.json.rename_fields]
+levelname = "status"
+asctime = "date"
+name = "logger"
+
+[handlers.console]
+level = "DEBUG"
+class = "logging.StreamHandler"
+formatter = "json"
+stream = "ext://sys.stdout"
+
+[loggers.root]
+handlers = [ "console" ]
+level = "INFO"
+
+[loggers.async_solid_fast_api]
+handlers = [ "console" ]
+level = "DEBUG"
+propagate = false
+
+[loggers.uvicorn.access]
+handlers = [ "console" ]
+level = "INFO"
+propagate = false
+
+[loggers.uvicorn.error]
+handlers = [ "console" ]
+level = "INFO"
+propagate = false
