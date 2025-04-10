@@ -6,8 +6,8 @@ import uvicorn
 from fastapi import FastAPI
 
 
-from async_solid_fast_api.core.logger import logger
-from async_solid_fast_api.services.external import test
+from .core.logger import logger
+from .services.external import test
 
 
 @asynccontextmanager
@@ -44,7 +44,7 @@ async def healthcheck():
 
 def main():
     uvicorn.run(
-        "async_solid_fast_api.core.app:app",
+        "async_solid_fast_api.app:app",
         host="0.0.0.0",
         port=8000,
         reload=True,
